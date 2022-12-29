@@ -1,3 +1,6 @@
+import { DataSource, DataSourceOptions } from 'typeorm';
+require('dotenv').config();
+
 export const ormConfig = {
   type: 'postgres',
   host: process.env.DATABASE_HOST,
@@ -12,4 +15,6 @@ export const ormConfig = {
   },
   synchronize: false,
   logging: true,
-};
+} as DataSourceOptions;
+
+export const AppDataSource: DataSource = new DataSource(ormConfig);
