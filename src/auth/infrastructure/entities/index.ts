@@ -1,1 +1,1 @@
-export { Account } from '@auth/infrastructure/entities/account.entity';
+export { Account } from './account.entity';
