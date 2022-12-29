@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  reshub-db:
+    image: postgres:latest
+    environment:
+      TZ: Asia/Tokyo
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASS}
+    ports:
+      - 5432:5432
+    volumes:
+      - reshub-db-data:/var/lib/postgresql/data:cached
+    restart: always
+
+volumes:
+  reshub-db-data:
