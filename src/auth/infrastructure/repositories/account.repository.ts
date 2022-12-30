@@ -2,15 +2,17 @@ import { CustomRepository } from '@config/decorator/custom-repository.decorator'
 import { Account, AccountRole } from '../entities';
 import { DataSource, Repository } from 'typeorm';
 import { RequestLoginDto, CreateAccountDto, UpdateAccountDto } from '@auth/dto';
-import { IAccountRepository, ILoginSuccess } from '@auth/domains/repositories';
+import { IAccountRepository } from '@auth/domains/repositories';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import {
+  BadRequestException,
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
 import { AccountDomain } from '@auth/domains/entity';
 import {
+  AuthenticationDetails,
   CognitoUser,
   CognitoUserAttribute,
   CognitoUserPool,
@@ -25,8 +27,29 @@ export class AccountRepository
     super(Account, dataSource.manager);
   }
 
-  signIn(dto: RequestLoginDto): Promise<ILoginSuccess> {
-    throw new Error('Method not implemented.');
+  async signIn(
+    userPool: CognitoUserPool,
+    dto: RequestLoginDto,
+  ): Promise<string> {
+    const account = await this.findOneBy({ username: dto.username });
+    if (!account) throw new BadRequestException('계정이 존재하지 않습니다.');
+
+    const authenticationData = new AuthenticationDetails({
+      Username: dto.username,
+      Password: dto.password,
+    });
+
+    const cognitoUser = new CognitoUser({
+      Username: dto.username,
+      Pool: userPool,
+    });
+
+    return await new Promise((resolve, reject) => {
+      return cognitoUser.authenticateUser(authenticationData, {
+        onSuccess: (result) => resolve(result.getIdToken().getJwtToken()),
+        onFailure: (err) => reject(err),
+      });
+    });
   }
 
   registerCognitoUser(

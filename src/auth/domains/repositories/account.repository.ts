@@ -18,7 +18,10 @@ export interface IPayload {
 }
 
 export abstract class IAccountRepository {
-  abstract signIn(dto: RequestLoginDto): Promise<ILoginSuccess>;
+  abstract signIn(
+    userPool: CognitoUserPool,
+    dto: RequestLoginDto,
+  ): Promise<string>;
   abstract register(dto: CreateAccountDto): Promise<AccountDomain>;
   abstract registerCognitoUser(
     userPool: CognitoUserPool,
