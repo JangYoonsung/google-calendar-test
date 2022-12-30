@@ -9,9 +9,9 @@ export const ormConfig = {
   password: process.env.DATABASE_PASS,
   database: process.env.DATABASE_SCHEMA,
   entities: ['src/**/*.entity{.ts,.js}'],
-  migrations: ['src/src/db/migrations/*.ts'],
+  migrations: ['src/db/migrations/*.ts'],
   cli: {
-    migrationsDir: 'src/src/db/migrations',
+    migrationsDir: 'src/db/migrations',
   },
   synchronize: false,
   logging: true,

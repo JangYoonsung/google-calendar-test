@@ -1,3 +1,5 @@
+import { getMetadataArgsStorage } from 'typeorm';
+
 export default () => ({
   database: {
     type: 'postgres',
@@ -7,6 +9,7 @@ export default () => ({
     password: process.env.DATABASE_PASS,
     timezone: 'Asia/Tokyo',
     database: process.env.DATABASE_SCHEMA,
+    entities: getMetadataArgsStorage().tables.map((tbl) => tbl.target),
     synchronize: false,
     logging: true,
   },
