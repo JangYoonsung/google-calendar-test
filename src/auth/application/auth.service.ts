@@ -1,4 +1,4 @@
-import { CreateAccountDto } from '@auth/dto';
+import { CreateAccountDto, RequestLoginDto } from '@auth/dto';
 import { AccountRepository } from '@auth/infrastructure/repositories/account.repository';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -26,5 +26,9 @@ export class AuthService {
 
   async registerConfirmed(dto: { email: string; code: string }) {
     return await this.accountRepository.registerConfirmed(this.userPool, dto);
+  }
+
+  async signIn(dto: RequestLoginDto) {
+    return await this.accountRepository.signIn(this.userPool, dto);
   }
 }
