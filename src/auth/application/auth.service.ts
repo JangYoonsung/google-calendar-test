@@ -1,14 +1,8 @@
 import { CreateAccountDto } from '@auth/dto';
-import { Account } from '@auth/infrastructure/entities';
 import { AccountRepository } from '@auth/infrastructure/repositories/account.repository';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { InjectRepository } from '@nestjs/typeorm';
-import {
-  CognitoUserAttribute,
-  CognitoUserPool,
-  ISignUpResult,
-} from 'amazon-cognito-identity-js';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 @Injectable()
 export class AuthService {
