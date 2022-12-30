@@ -1,4 +1,3 @@
-import { ConfigurationModule } from '@config/configuration.module';
 import { CustomTypeOrmModule } from '@config/custom-typerom.module';
 import { Module } from '@nestjs/common';
 import { AccountRepository } from './infrastructure/repositories/account.repository';
@@ -11,6 +10,7 @@ import { PassportModule } from '@nestjs/passport';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Account, AccountRole]),
+    CustomTypeOrmModule.forRepository([AccountRepository]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   providers: [AuthService],
