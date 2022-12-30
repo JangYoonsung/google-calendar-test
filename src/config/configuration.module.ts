@@ -16,11 +16,8 @@ import { DataSource, DataSourceOptions } from 'typeorm';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) =>
         configService.get('database'),
-      dataSourceFactory: async (options: DataSourceOptions) => {
-        const dataSource = await new DataSource(options).initialize();
-        console.log('dataSource init', dataSource);
-        return dataSource;
-      },
+      dataSourceFactory: async (options: DataSourceOptions) =>
+        await new DataSource(options).initialize(),
     }),
   ],
 })

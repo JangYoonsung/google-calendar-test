@@ -12,6 +12,7 @@ import {
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
 import { DataSource, Repository } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class AuthService {
@@ -27,7 +28,7 @@ export class AuthService {
   }
   private userPool: CognitoUserPool;
 
-  async register(dto: CreateAccountDto): Promise<string> {
+  async register(dto: CreateAccountDto) {
     const account = await this.accountRepository.findOneBy({
       username: dto.username,
     });
@@ -37,15 +38,15 @@ export class AuthService {
       const newAccount = await this.dataSource.manager.transaction(
         async (manager) => {
           const accountRoleRepo = manager.getRepository(AccountRole);
-          const accountRoleData = accountRoleRepo.create({ role: 'member' });
-          const role = await accountRoleRepo.save(accountRoleData);
-
-          const accountData = this.accountRepository.create({
-            ...dto,
-            uuid: 'test',
-            role,
+          const uuid = uuidv4();
+          const accountData = this.accountRepository.create({ ...dto, uuid });
+          const account = await this.accountRepository.save(accountData);
+          const accountRoleData = accountRoleRepo.create({
+            role: 'member',
+            account: account,
           });
-          return await this.accountRepository.save(accountData);
+          await accountRoleRepo.save(accountRoleData);
+          return account;
         },
       );
 
@@ -68,6 +69,7 @@ export class AuthService {
           },
         );
       });
+      return data;
     } catch (err) {
       throw new InternalServerErrorException();
     }
