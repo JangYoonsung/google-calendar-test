@@ -20,6 +20,9 @@ export class Account extends BaseEntity {
   uuid: string;
 
   @Column()
+  username: string;
+
+  @Column()
   email: string;
 
   @CreateDateColumn()
