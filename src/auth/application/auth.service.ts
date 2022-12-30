@@ -23,4 +23,8 @@ export class AuthService {
       this.accountRepository.registerCognitoUser(this.userPool, dto),
     ]);
   }
+
+  async registerConfirmed(dto: { email: string; code: string }) {
+    return await this.accountRepository.registerConfirmed(this.userPool, dto);
+  }
 }

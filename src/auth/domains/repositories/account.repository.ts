@@ -24,5 +24,9 @@ export abstract class IAccountRepository {
     userPool: CognitoUserPool,
     data: CreateAccountDto,
   ): Promise<CognitoUser>;
+  abstract registerConfirmed(
+    userPool: CognitoUserPool,
+    data: { email: AccountDomain['email']; code: string },
+  );
   abstract updateAccount(dto: UpdateAccountDto): Promise<void>;
 }

@@ -17,4 +17,10 @@ export class AuthController {
   async register(@Body() dto: CreateAccountDto) {
     return await this.authService.register(dto);
   }
+
+  @Post('/confirm')
+  @UsePipes(ValidationPipe)
+  async registerConfirmed(@Body() dto: { email: string; code: string }) {
+    return await this.authService.registerConfirmed(dto);
+  }
 }

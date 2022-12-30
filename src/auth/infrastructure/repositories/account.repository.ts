@@ -74,6 +74,22 @@ export class AccountRepository
       throw new InternalServerErrorException();
     }
   }
+
+  async registerConfirmed(
+    userPool: CognitoUserPool,
+    data: { email: string; code: string },
+  ) {
+    const cognitoUser = new CognitoUser({
+      Username: data.email,
+      Pool: userPool,
+    });
+
+    return cognitoUser.confirmRegistration(data.code, true, (err, result) => {
+      if (err) return;
+      return result;
+    });
+  }
+
   updateAccount(dto: UpdateAccountDto): Promise<void> {
     throw new Error('Method not implemented.');
   }
