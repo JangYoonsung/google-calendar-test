@@ -4,9 +4,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { AccountRole } from '.';
 
 @Entity()
 export class Account extends BaseEntity {
@@ -19,12 +22,6 @@ export class Account extends BaseEntity {
   @Column()
   email: string;
 
-  @Column()
-  password: string;
-
-  @Column({ default: null })
-  googleApiToken: string;
-
   @CreateDateColumn()
   readonly createdAt: Date;
 
@@ -33,4 +30,8 @@ export class Account extends BaseEntity {
 
   @DeleteDateColumn()
   readonly deletedAt?: Date;
+
+  @OneToOne(() => AccountRole, (accountRole) => accountRole.account)
+  @JoinColumn({ name: 'roleId', referencedColumnName: 'id' })
+  role: AccountRole;
 }
