@@ -3,10 +3,13 @@ import { CreateAccountDto, RequestLoginDto } from '@auth/dto';
 import {
   Body,
   Controller,
+  Get,
   Post,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {

@@ -6,6 +6,7 @@ import { Account, AccountRole } from './infrastructure/entities';
 import { AuthService } from './application/auth.service';
 import { AuthController } from './presentation/auth.controller';
 import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from '@common/guards/jwt-strategy';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { PassportModule } from '@nestjs/passport';
     CustomTypeOrmModule.forRepository([AccountRepository]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}
