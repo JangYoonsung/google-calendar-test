@@ -20,7 +20,7 @@
     "paths": {
       "@auth/*": ["./src/auth/*"],
       "@config/*": ["./src/config/*"],
-      "@common/*": ["./src/common/*"],
+      "@lib/*": ["src/lib/*"],
       "@shops/*": ["./src/shops/*"],
       "@staffs/*": ["./src/staffs/*"],
       "@menus/*": ["./src/menus/*"]

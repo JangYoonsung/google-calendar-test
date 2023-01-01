@@ -6,7 +6,7 @@ import { Account, AccountRole } from './infrastructure/entities';
 import { AuthService } from './application/auth.service';
 import { AuthController } from './presentation/auth.controller';
 import { PassportModule } from '@nestjs/passport';
-import { JwtStrategy } from '@common/passport/jwt-strategy';
+import { JwtStrategy } from '@lib/passport/jwt-strategy';
 
 @Module({
   imports: [
