@@ -10,14 +10,12 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { AccountRole } from '.';
+import { UUIDBaseEntity } from '@config/entity/uuid-base.entity';
 
 @Entity()
-export class Account extends BaseEntity {
+export class Account extends UUIDBaseEntity {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   readonly id: number;
-
-  @Column({ type: 'uuid', unique: true })
-  uuid: string;
 
   @Column()
   username: string;
