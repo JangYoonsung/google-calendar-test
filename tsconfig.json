@@ -19,7 +19,11 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@auth/*": ["./src/auth/*"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@common/*": ["./src/common/*"],
+      "@shops/*": ["./src/shops/*"],
+      "@staffs/*": ["./src/staffs/*"],
+      "@menus/*": ["./src/menus/*"]
     },
     "lib": ["es2017"],
     "esModuleInterop": true
