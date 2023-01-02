@@ -3,7 +3,7 @@ import { Shop } from '../entities';
 import { Repository, UpdateResult } from 'typeorm';
 import { IShopRepository } from '@shops/domains/repositories';
 import { ShopDomain } from '@shops/domains/entities';
-import { CreateShopDto, UpdateShopDto } from '@shops/dto/request-shop.dto';
+import { CreateShopDto, UpdateShopDto } from '@shops/dto';
 
 @CustomRepository(Shop)
 export class ShopRepository

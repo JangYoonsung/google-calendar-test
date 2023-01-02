@@ -1,4 +1,4 @@
-import { CreateShopDto, UpdateShopDto } from '@shops/dto/request-shop.dto';
+import { CreateShopDto, UpdateShopDto } from '@shops/dto';
 import { ShopDomain } from '../entities';
 import { Shop } from '@shops/infrastructure/entities';
 import { UpdateResult } from 'typeorm';
