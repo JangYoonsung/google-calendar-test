@@ -5,12 +5,14 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { AccountRole } from '.';
 import { UUIDBaseEntity } from '@config/entity/uuid-base.entity';
+import { Shop } from '@shops/infrastructure/entities/shop.entity';
 
 @Entity()
 export class Account extends UUIDBaseEntity {
@@ -35,4 +37,7 @@ export class Account extends UUIDBaseEntity {
   @OneToOne(() => AccountRole, (accountRole) => accountRole.account)
   @JoinColumn({ name: 'roleId', referencedColumnName: 'id' })
   role: AccountRole;
+
+  @OneToMany(() => Shop, (shop) => shop.account)
+  shops: Shop[];
 }
