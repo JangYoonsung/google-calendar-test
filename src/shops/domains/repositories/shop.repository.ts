@@ -1,8 +1,10 @@
 import { CreateShopDto, UpdateShopDto } from '@shops/dto/request-shop.dto';
 import { ShopDomain } from '../entities';
+import { Shop } from '@shops/infrastructure/entities';
+import { UpdateResult } from 'typeorm';
 
 export abstract class IShopRepository {
-  abstract findOne(id: number): Promise<ShopDomain>;
-  abstract createShop(dto: CreateShopDto): Promise<ShopDomain>;
-  abstract updateShop(dto: UpdateShopDto): Promise<void>;
+  abstract findById(id: number): Promise<ShopDomain>;
+  abstract createShop(dto: CreateShopDto, accountId: number): Promise<Shop>;
+  abstract updateShop(id: number, dto: UpdateShopDto): Promise<UpdateResult>;
 }
