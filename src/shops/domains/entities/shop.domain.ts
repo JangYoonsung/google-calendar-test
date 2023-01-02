@@ -1,4 +1,5 @@
-import { Shop as ShopEntity } from '../infrastructure/entities';
+import { Shop as ShopEntity } from '@shops/infrastructure/entities';
+
 export class Shop {
   readonly _id: number;
   readonly id: string;
