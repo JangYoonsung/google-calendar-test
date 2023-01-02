@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { SCHEDULE_DAYS } from './constants/scheduleDays';
+import { SCHEDULE_DAYS } from '../../constants/scheduleDays';
 
 @Entity()
 export class Shop extends UUIDBaseEntity {
