@@ -10,7 +10,7 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { AccountDomain } from '@auth/domains/entity';
+import { AccountDomain } from '@auth/domains/entities';
 import {
   AuthenticationDetails,
   CognitoUser,

@@ -1,5 +1,5 @@
 import { CreateAccountDto, RequestLoginDto, UpdateAccountDto } from '@auth/dto';
-import { AccountDomain } from '../entity';
+import { AccountDomain } from '../entities';
 import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 
 export interface ILoginSuccess {
