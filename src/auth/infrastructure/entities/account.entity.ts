@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -12,7 +11,7 @@ import {
 } from 'typeorm';
 import { AccountRole } from '.';
 import { UUIDBaseEntity } from '@config/entity/uuid-base.entity';
-import { Shop } from '@shops/infrastructure/entities/shop.entity';
+import { Shop } from '@shops/infrastructure/entities';
 
 @Entity()
 export class Account extends UUIDBaseEntity {
