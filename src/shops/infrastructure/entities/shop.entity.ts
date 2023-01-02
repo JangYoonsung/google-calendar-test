@@ -35,13 +35,13 @@ export class Shop extends UUIDBaseEntity {
   tel: string;
 
   @Column({ default: null })
-  openedAt: Date;
+  openedAt: string;
 
   @Column({ default: null })
-  closedAt: Date;
+  closedAt: string;
 
   @Column({ default: null, array: true, type: 'varchar' })
-  days: typeof SCHEDULE_DAYS[];
+  scheduledAt: typeof SCHEDULE_DAYS[];
 
   @Column({ default: null })
   description: string;
