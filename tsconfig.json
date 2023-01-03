@@ -21,6 +21,7 @@
       "@auth/*": ["./src/auth/*"],
       "@config/*": ["./src/config/*"],
       "@lib/*": ["src/lib/*"],
+      "@decorator": ["./src/decorator"],
       "@shops/*": ["./src/shops/*"],
       "@staffs/*": ["./src/staffs/*"],
       "@menus/*": ["./src/menus/*"]
