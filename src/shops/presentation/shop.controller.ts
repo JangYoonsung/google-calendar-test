@@ -1,4 +1,5 @@
 import { Account } from '@auth/infrastructure/entities';
+import { GetUser } from '@decorator';
 import { JwtGuard } from '@lib/guard';
 import {
   Body,
@@ -28,8 +29,7 @@ export class ShopController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async createShop(@Body() dto: CreateShopDto, @Req() request: Request) {
-    const account = request.user as Account;
+  async createShop(@Body() dto: CreateShopDto, @GetUser() account: Account) {
     return await this.shopService.createShop(account.id, dto);
   }
 }
