@@ -15,8 +15,15 @@ export class ShopRepository
     super(Shop, dataSource.manager);
   }
 
-  async findById(id: number): Promise<ShopDomain> {
-    return await this.findOneBy({ id }).then((shop) => new ShopDomain(shop));
+  async getShopId(uuid: string) {
+    return await this.findOneBy({ uuid }).then((shop) => shop.id);
+  }
+
+  async findById(id: string): Promise<ShopDomain> {
+    const shopId = await this.getShopId(id);
+    return await this.findOneBy({ id: shopId }).then(
+      (shop) => new ShopDomain(shop),
+    );
   }
 
   async createShop(dto: CreateShopDto, accountId: number): Promise<Shop> {
@@ -24,7 +31,7 @@ export class ShopRepository
     return await this.save(data);
   }
 
-  async updateShop(id: number, dto: UpdateShopDto): Promise<UpdateResult> {
+  async updateShop(id: string, dto: UpdateShopDto): Promise<UpdateResult> {
     return await this.update(id, { ...dto });
   }
 }

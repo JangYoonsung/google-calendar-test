@@ -7,7 +7,7 @@ import { ShopRepository } from '@shops/infrastructure/repositories';
 export class ShopService {
   constructor(private shopRepository: ShopRepository) {}
 
-  async findByShopId(id: number): Promise<ShopDomain> {
+  async findByShopId(id: string): Promise<ShopDomain> {
     return await this.shopRepository.findById(id);
   }
 
@@ -15,7 +15,7 @@ export class ShopService {
     return await this.shopRepository.createShop(dto, accountId);
   }
 
-  async updateShop(id: number, dto: UpdateShopDto) {
+  async updateShop(id: string, dto: UpdateShopDto) {
     return await this.shopRepository.updateShop(id, dto);
   }
 }

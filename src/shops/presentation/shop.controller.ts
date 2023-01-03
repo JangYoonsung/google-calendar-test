@@ -7,6 +7,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
   Req,
   UseGuards,
@@ -14,8 +15,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ShopService } from '@shops/application/shop.service';
-import { CreateShopDto } from '@shops/dto';
-import { Request } from 'express';
+import { CreateShopDto, UpdateShopDto } from '@shops/dto';
 
 @Controller('shops')
 @UseGuards(JwtGuard)
@@ -23,7 +23,7 @@ export class ShopController {
   constructor(private shopService: ShopService) {}
 
   @Get(':id')
-  async getShop(@Param('id', ParseIntPipe) id: number) {
+  async getShop(@Param('id', ParseIntPipe) id: string) {
     return await this.shopService.findByShopId(id);
   }
 
@@ -31,5 +31,10 @@ export class ShopController {
   @UsePipes(ValidationPipe)
   async createShop(@Body() dto: CreateShopDto, @GetUser() account: Account) {
     return await this.shopService.createShop(account.id, dto);
+  }
+
+  @Patch(':id')
+  async updateShop(@Body() dto: UpdateShopDto, @Param('id') shopId: string) {
+    return await this.shopService.updateShop(shopId, dto);
   }
 }
