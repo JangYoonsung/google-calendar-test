@@ -1,6 +1,5 @@
 import { PaginationDto } from '@lib/common/dto/pagination.dto';
 import { PartialType } from '@nestjs/mapped-types';
-import { SCHEDULE_DAYS } from '@shops/constants/scheduleDays';
 import { ShopDomain } from '@shops/domains/entities';
 import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
