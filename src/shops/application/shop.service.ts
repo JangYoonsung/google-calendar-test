@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ShopDomain } from '@shops/domains/entities';
 import { CreateShopDto, ResponseShopDto, UpdateShopDto } from '@shops/dto';
 import { ShopRepository } from '@shops/infrastructure/repositories';
 
@@ -7,11 +8,19 @@ export class ShopService {
   constructor(private shopRepository: ShopRepository) {}
 
   async findByShopId(id: string): Promise<ResponseShopDto> {
-    return await this.shopRepository.findById(id);
+    return await this.shopRepository
+      .findById(id)
+      .then((shop) => new ShopDomain(shop).response);
   }
 
-  async createShop(accountId: number, dto: CreateShopDto) {
-    return await this.shopRepository.createShop(dto, accountId);
+  async createShop(
+    accountId: number,
+    dto: CreateShopDto,
+  ): Promise<ResponseShopDto> {
+    const initialData = ShopDomain.setAttributes(dto, accountId);
+    return await this.shopRepository
+      .createShop(initialData)
+      .then((shop) => new ShopDomain(shop).response);
   }
 
   async updateShop(id: string, dto: UpdateShopDto) {

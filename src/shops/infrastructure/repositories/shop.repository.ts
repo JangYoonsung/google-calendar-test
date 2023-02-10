@@ -2,9 +2,9 @@ import { CustomRepository } from '@config/decorator/custom-repository.decorator'
 import { Shop } from '../entities';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { IShopRepository } from '@shops/domains/repositories';
-import { ShopDomain } from '@shops/domains/entities';
-import { CreateShopDto, ResponseShopDto, UpdateShopDto } from '@shops/dto';
+import { UpdateShopDto } from '@shops/dto';
 import { InjectDataSource } from '@nestjs/typeorm';
+import { TShopAttributes } from '@shops/domains/entities/shop.domain';
 
 @CustomRepository(Shop)
 export class ShopRepository
@@ -19,16 +19,15 @@ export class ShopRepository
     return await this.findOneBy({ uuid }).then((shop) => shop.id);
   }
 
-  async findById(id: string): Promise<ResponseShopDto> {
+  async findById(id: string): Promise<Shop> {
     const shopId = await this.getShopId(id);
-    return await this.findOneBy({ id: shopId }).then(
-      (shop) => new ShopDomain(shop).response,
-    );
+    return await this.findOneBy({ id: shopId });
   }
 
-  async createShop(dto: CreateShopDto, accountId: number): Promise<Shop> {
-    const data = this.create({ ...dto, accountId });
-    return await this.save(data);
+  async createShop(shopData: TShopAttributes): Promise<Shop> {
+    const data = this.create(shopData);
+    await this.insert(data);
+    return data;
   }
 
   async updateShop(id: string, dto: UpdateShopDto): Promise<UpdateResult> {
