@@ -31,7 +31,7 @@ export class Shop extends UUIDBaseEntity {
   @Column()
   town: string;
 
-  @Column({ default: null })
+  @Column()
   address: string;
 
   @Column({ default: null })
