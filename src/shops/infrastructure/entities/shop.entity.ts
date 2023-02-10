@@ -68,4 +68,10 @@ export class Shop extends UUIDBaseEntity {
   account: Account;
   @Column()
   accountId: number;
+
+  get fullAddress(): string {
+    return `${this.prefecture}${this.city}${this.town}${this.address}${
+      this?.address2 ?? ''
+    }`;
+  }
 }
