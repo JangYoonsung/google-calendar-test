@@ -31,4 +31,17 @@ export class Staff {
     this.accountId = staff.accountId;
     this.shop = new ShopDomain(staff.shop).response;
   }
+
+  get response() {
+    return {
+      id: this.id,
+      name: this.name,
+      price: this.price,
+      role: this.role,
+      image: this.image ?? '',
+      description: this.description ?? '',
+      career: this.career ?? 0,
+      shop: this.shop,
+    };
+  }
 }
