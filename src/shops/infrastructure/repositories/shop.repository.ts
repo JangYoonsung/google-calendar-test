@@ -3,9 +3,8 @@ import { Shop } from '../entities';
 import { DataSource, Repository, UpdateResult } from 'typeorm';
 import { IShopRepository } from '@shops/domains/repositories';
 import { ShopDomain } from '@shops/domains/entities';
-import { CreateShopDto, UpdateShopDto } from '@shops/dto';
+import { CreateShopDto, ResponseShopDto, UpdateShopDto } from '@shops/dto';
 import { InjectDataSource } from '@nestjs/typeorm';
-import { TResponseShop } from '@shops/domains/entities/shop.domain';
 
 @CustomRepository(Shop)
 export class ShopRepository
@@ -20,7 +19,7 @@ export class ShopRepository
     return await this.findOneBy({ uuid }).then((shop) => shop.id);
   }
 
-  async findById(id: string): Promise<TResponseShop> {
+  async findById(id: string): Promise<ResponseShopDto> {
     const shopId = await this.getShopId(id);
     return await this.findOneBy({ id: shopId }).then(
       (shop) => new ShopDomain(shop).response,

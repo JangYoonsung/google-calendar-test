@@ -1,21 +1,5 @@
-import { CreateShopDto } from '@shops/dto';
+import { CreateShopDto, ResponseShopDto } from '@shops/dto';
 import { Shop as ShopEntity } from '@shops/infrastructure/entities';
-
-export type TResponseShop = Pick<
-  Shop,
-  | 'id'
-  | 'name'
-  | 'zipCode'
-  | 'address'
-  | 'owner'
-  | 'tel'
-  | 'openedAt'
-  | 'closedAt'
-  | 'scheduledAt'
-  | 'description'
-  | 'createdAt'
-  | 'updatedAt'
->;
 
 export type TShopAttributes = {
   accountId: number;
@@ -67,7 +51,7 @@ export class Shop {
     this.accountId = shop.accountId;
   }
 
-  get response(): TResponseShop {
+  get response(): ResponseShopDto {
     return {
       id: this.id,
       name: this.name,
