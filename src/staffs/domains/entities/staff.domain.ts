@@ -11,6 +11,9 @@ export class Staff {
   readonly image: string | null;
   readonly description: string | null;
   readonly career: number | null;
+  readonly createdAt: Date;
+  readonly updatedAt: Date;
+  readonly deletedAt: Date;
   readonly accountId: number;
   readonly shop: ResponseShopDto;
 
@@ -23,6 +26,8 @@ export class Staff {
     this.image = staff.image;
     this.description = staff.description;
     this.career = staff.career;
+    this.createdAt = staff.createdAt;
+    this.updatedAt = staff.updatedAt;
     this.accountId = staff.accountId;
     this.shop = new ShopDomain(staff.shop).response;
   }

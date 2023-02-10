@@ -2,7 +2,15 @@ import { Account } from '@auth/infrastructure/entities';
 import { UUIDBaseEntity } from '@config/entity/uuid-base.entity';
 import { Shop } from '@shops/infrastructure/entities';
 import { STAFF_ROLE } from '@staffs/constants/role';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Staff extends UUIDBaseEntity {
@@ -30,6 +38,15 @@ export class Staff extends UUIDBaseEntity {
 
   @Column({ default: null, comment: '경력' })
   career: number;
+
+  @CreateDateColumn()
+  readonly createdAt: Date;
+
+  @UpdateDateColumn()
+  readonly updatedAt: Date;
+
+  @DeleteDateColumn()
+  readonly deletedAt: Date;
 
   @ManyToOne(() => Shop, (shop) => shop.shopStaffs)
   shop: Shop;
