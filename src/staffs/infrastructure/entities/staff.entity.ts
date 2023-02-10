@@ -15,7 +15,11 @@ export class Staff extends UUIDBaseEntity {
   @Column({ default: 0, comment: '지명료' })
   price: number;
 
-  @Column({ default: STAFF_ROLE.STYLIST, comment: '스태프의 역할' })
+  @Column({
+    default: STAFF_ROLE.STYLIST,
+    comment: '스태프의 역할',
+    type: 'varchar',
+  })
   role: typeof STAFF_ROLE[keyof typeof STAFF_ROLE];
 
   @Column({ default: null, comment: '스태프 사진' })
