@@ -20,6 +20,18 @@ export class CreateShopDto {
 
   @IsString()
   @IsNotEmpty()
+  prefecture: string;
+
+  @IsString()
+  @IsNotEmpty()
+  city: string;
+
+  @IsString()
+  @IsNotEmpty()
+  town: string;
+
+  @IsString()
+  @IsNotEmpty()
   address: string;
 
   @IsString()

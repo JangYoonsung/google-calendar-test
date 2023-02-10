@@ -23,6 +23,15 @@ export class Shop extends UUIDBaseEntity {
   zipCode: string;
 
   @Column()
+  prefecture: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  town: string;
+
+  @Column({ default: null })
   address: string;
 
   @Column({ default: null })
