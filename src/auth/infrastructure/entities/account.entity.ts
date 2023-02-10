@@ -12,6 +12,7 @@ import {
 import { AccountRole } from '.';
 import { UUIDBaseEntity } from '@config/entity/uuid-base.entity';
 import { Shop } from '@shops/infrastructure/entities';
+import { Staff } from '@staffs/infrastructure/entities';
 
 @Entity()
 export class Account extends UUIDBaseEntity {
@@ -39,4 +40,7 @@ export class Account extends UUIDBaseEntity {
 
   @OneToMany(() => Shop, (shop) => shop.account)
   shops: Shop[];
+
+  @OneToMany(() => Staff, (staff) => staff.account)
+  staffs: Staff[];
 }

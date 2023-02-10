@@ -6,10 +6,12 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { SCHEDULE_DAYS } from '../../constants/scheduleDays';
+import { Staff } from '@staffs/infrastructure/entities';
 
 @Entity()
 export class Shop extends UUIDBaseEntity {
@@ -63,6 +65,9 @@ export class Shop extends UUIDBaseEntity {
 
   @DeleteDateColumn()
   readonly deletedAt: Date;
+
+  @OneToMany(() => Staff, (staff) => staff.shop)
+  shopStaffs: Staff[];
 
   @ManyToOne(() => Account, (account) => account.shops)
   account: Account;
