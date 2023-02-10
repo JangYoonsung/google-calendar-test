@@ -23,7 +23,7 @@ export class ShopRepository
   async findById(id: string): Promise<TResponseShop> {
     const shopId = await this.getShopId(id);
     return await this.findOneBy({ id: shopId }).then(
-      (shop) => new ShopDomain(shop).responseType,
+      (shop) => new ShopDomain(shop).response,
     );
   }
 

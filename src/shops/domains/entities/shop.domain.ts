@@ -67,7 +67,7 @@ export class Shop {
     this.accountId = shop.accountId;
   }
 
-  get responseType(): TResponseShop {
+  get response(): TResponseShop {
     return {
       id: this.id,
       name: this.name,
