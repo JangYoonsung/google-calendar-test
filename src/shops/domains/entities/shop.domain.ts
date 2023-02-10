@@ -69,9 +69,6 @@ export class Shop {
   }
 
   static setAttributes(dto: CreateShopDto, accountId: number): TShopAttributes {
-    return {
-      accountId,
-      ...dto,
-    };
+    return { accountId, ...dto };
   }
 }

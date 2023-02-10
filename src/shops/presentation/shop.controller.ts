@@ -9,7 +9,6 @@ import {
   ParseIntPipe,
   Patch,
   Post,
-  Req,
   UseGuards,
   UsePipes,
   ValidationPipe,
@@ -34,6 +33,7 @@ export class ShopController {
   }
 
   @Patch(':id')
+  @UsePipes(ValidationPipe)
   async updateShop(@Body() dto: UpdateShopDto, @Param('id') shopId: string) {
     return await this.shopService.updateShop(shopId, dto);
   }

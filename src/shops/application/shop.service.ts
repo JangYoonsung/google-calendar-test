@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { ShopDomain } from '@shops/domains/entities';
-import { CreateShopDto, UpdateShopDto } from '@shops/dto';
+import { CreateShopDto, ResponseShopDto, UpdateShopDto } from '@shops/dto';
 import { ShopRepository } from '@shops/infrastructure/repositories';
 
 @Injectable()
 export class ShopService {
   constructor(private shopRepository: ShopRepository) {}
 
-  async findByShopId(id: string): Promise<ShopDomain> {
+  async findByShopId(id: string): Promise<ResponseShopDto> {
     return await this.shopRepository.findById(id);
   }
 
