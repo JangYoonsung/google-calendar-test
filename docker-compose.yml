@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  reshub-db:
+  calendar-test:
     image: postgres:latest
     environment:
       TZ: Asia/Tokyo
@@ -10,8 +10,8 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - reshub-db-data:/var/lib/postgresql/data:cached
+      - calendar-test-data:/var/lib/postgresql/data:cached
     restart: always
 
 volumes:
-  reshub-db-data:
+  calendar-test-data:
