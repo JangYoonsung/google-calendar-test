@@ -6,6 +6,7 @@ import {
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 const useFactory: (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ...args: any[]
 ) => TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> = (
   configService: ConfigService,
